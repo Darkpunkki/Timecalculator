@@ -1,13 +1,17 @@
-FROM maven:latest
-
-LABEL authors="jimij"
+FROM maven:3.8.5-openjdk-17 AS build
 
 WORKDIR /app
 
 COPY pom.xml /app/
 
-COPY . /app/
+COPY src /app/src/
 
-RUN mvn package
+RUN mvn clean package
 
-CMD ["java", "-jar", "target/TimeCalculator-1.0-SNAPSHOT.jar"]
+FROM openjdk:17-jdk-slim
+
+WORKDIR /app
+
+COPY --from=build /app/target/*.jar /app/TemperatureConverter-1.0-SNAPSHOT.jar
+
+CMD ["java", "-jar", "Timecalculator-1.0-SNAPSHOT.jar"]
