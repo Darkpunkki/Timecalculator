@@ -12,6 +12,6 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=build /app/target/*.jar /app/TemperatureConverter-1.0-SNAPSHOT.jar
+COPY --from=build /app/target/*.jar /app/TimeConverter-1.0-SNAPSHOT.jar
 
 CMD ["java", "-jar", "Timecalculator-1.0-SNAPSHOT.jar"]
