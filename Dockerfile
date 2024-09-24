@@ -1,4 +1,4 @@
-FROM maven:3.9.6-openjdk-17 AS build
+FROM maven:3.8.5-openjdk-17 AS build
 
 WORKDIR /app
 
@@ -12,6 +12,6 @@ FROM openjdk:17-jdk-slim
 
 WORKDIR /app
 
-COPY --from=build /app/target/*.jar /app/TimeCalculator-1.0-SNAPSHOT.jar
+COPY --from=build /app/target/*.jar /app/app.jar
 
-CMD ["java", "-jar", "Timecalculator-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "app.jar"]
